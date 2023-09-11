@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Docker.DotNet.Models;
 
 namespace JwtWebApi.Controllers
 {
@@ -60,10 +61,10 @@ namespace JwtWebApi.Controllers
 
             var token = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.Now.AddDays(1),
+            expires: DateTime.Now.AddMinutes(30),
             signingCredentials: creds);
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
         }
 
